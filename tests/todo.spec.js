@@ -47,7 +47,6 @@ test.describe('TodoMVC Application', () => {
       'Todo "Learn Playwright" should be visible in the current todo list'
     ).toBeVisible();
 
-
     // Select the Active filter to display only active todos
     await todoPage.showActiveTodos();
     await expect(
