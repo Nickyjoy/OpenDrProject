@@ -7,7 +7,6 @@ test.describe('TodoMVC Application', () => {
     // Create an instance of the TodoPage Page Object // and pass the current Playwright page object to it
     const todoPage = new TodoPage(page);
 
-
     // Navigate to the TodoMVC application
     await todoPage.open();
     await expect(
@@ -15,14 +14,12 @@ test.describe('TodoMVC Application', () => {
       'Todo input field should be visible so a new todo can be added'
     ).toBeVisible();
 
-
     // Add the first todo item
     await todoPage.addTodo('Learn Playwright');
     await expect(
-      todoPage.todo('Learn Playwright'),
+      todoPage.getTodoItem('Learn Playwright'),
       'Todo "Learn Playwright" should be visible in the current todo list'
     ).toBeVisible();
-
 
     // Add the second todo item
     await todoPage.addTodo('Write tests');
@@ -30,7 +27,6 @@ test.describe('TodoMVC Application', () => {
       todoPage.todoItems,
       'Expected 2 visible todo item(s), but the actual count is different'
     ).toHaveCount(2);
-
 
     // Mark "Learn Playwright" as completed
     await todoPage.completeTodo('Learn Playwright');
@@ -43,7 +39,7 @@ test.describe('TodoMVC Application', () => {
     ).toHaveCount(1);
     
     await expect(
-      todoPage.todo('Learn Playwright'),
+      todoPage.getTodoItem('Learn Playwright'),
       'Todo "Learn Playwright" should be visible in the current todo list'
     ).toBeVisible();
 
@@ -55,10 +51,10 @@ test.describe('TodoMVC Application', () => {
     ).toHaveCount(1);
 
     await expect(
-      todoPage.todo('Write tests'),
+      todoPage.getTodoItem('Write tests'),
       'Todo "Write tests" should be visible in the current todo list'
     ).toBeVisible();
+    
+  }); 
 
-  });
-  
 });
